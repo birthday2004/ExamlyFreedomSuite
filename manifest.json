@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Examly Freedom Suite (Directive 7.0)",
+  "version": "7.0.0",
+  "description": "Bypasses all NeoCollab/Examly restrictions. Enables copy/paste, tab switching, and disables all proctoring features. For use on https://*.examly.io/.",
+  "permissions": [
+    "storage",
+    "scripting",
+    "declarativeNetRequest",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*.examly.io/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.examly.io/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["payload.js"],
+      "matches": ["*://*.examly.io/*"]
+    }
+  ],
+  "action": {
+    "default_title": "Examly Freedom Suite is Active"
+  },
+  "declarative_net_request" : {
+    "rule_resources" : []
+  }
+}
